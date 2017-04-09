@@ -55,7 +55,7 @@
     (let [nbrs (get-frontier target vec-dict)
           word-link (cset/intersection (set nbrs) (set (first route))) ]
       (concat (path-back word-link (rest route) )
-          (list (first link)) ))))
+          (list (first word-link)) ))))
 
 (defn doublets [word1 word2]
   (let [route (bfs [word1] vec-dict #{} word2 '()) ]
