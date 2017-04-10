@@ -3,6 +3,19 @@
             [fox-goose-bag-of-corn.puzzle :refer :all]
             [clojure.set]))
 
+(deftest test-safe-side
+  (testing "detect save positions"
+    (is (= true (safe-side [])))
+    (is (= true (safe-side [:you])))
+    (is (= true (safe-side [:goose])))
+    (is (= true (safe-side [:corn])))
+    (is (= true (safe-side [:fox])))
+    (is (= true (safe-side [:corn :fox])))
+    (is (= true (safe-side [:goose :fox :you])))
+    (is (= true (safe-side [:goose :corn :you])))
+    (is (= true (safe-side [:goose :corn :fox :you])))
+))
+
 (defn validate-move [step1 step2]
   (testing "only you and another thing can move"
     (let [diff1 (clojure.set/difference step1 step2)
